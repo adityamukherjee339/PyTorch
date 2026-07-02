@@ -1,0 +1,30 @@
+---
+number: "08"
+title: "Transfer Learning"
+tag: "Module 08"
+subtitle: "Standing on the shoulders of giants."
+---
+
+Why train a model from scratch for days when you can fine-tune a world-class model in minutes?
+
+## Feature Extraction vs Fine-Tuning
+
+1. **Feature Extraction**: Freeze all layers of the pre-trained model except the final classification head. The model acts as a fixed feature extractor.
+2. **Fine-Tuning**: Unfreeze some or all layers of the pre-trained model and train them alongside the new classification head with a very small learning rate.
+
+```python
+import torchvision.models as models
+import torch.nn as nn
+
+# 1. Get pre-trained model
+weights = models.ResNet18_Weights.DEFAULT
+model = models.resnet18(weights=weights)
+
+# 2. Freeze base layers (Feature Extraction)
+for param in model.parameters():
+    param.requires_grad = False
+
+# 3. Replace the classifier head
+num_ftrs = model.fc.in_features
+model.fc = nn.Linear(num_ftrs, num_classes) # New layer requires_grad=True by default
+```

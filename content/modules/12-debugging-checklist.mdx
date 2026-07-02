@@ -1,0 +1,20 @@
+---
+number: "12"
+title: "Debugging Checklist"
+tag: "Module 12"
+subtitle: "What to do when the loss goes to NaN."
+---
+
+Debugging deep learning is notoriously difficult because models fail silently. Keep this checklist handy.
+
+## The Checklist
+
+1. **Shape Mismatches**: Are your batch sizes and feature dimensions aligned? Use `print(x.shape)`.
+2. **Device Mismatches**: "Expected all tensors to be on the same device". Ensure model and data are both on `cuda:0` or `cpu`.
+3. **Dtype Mismatches**: "Expected object of scalar type Float but got Long". Usually happens with loss functions. Check `x.dtype`.
+4. **Did you zero the gradients?**: If you forget `optimizer.zero_grad()`, gradients will accumulate across batches!
+5. **Is it in train mode?**: Ensure `model.train()` is called before training and `model.eval()` before evaluation.
+
+<Callout type="tip">
+When all else fails, try overfitting a single batch of data. If the model can't achieve near 0 loss on a single batch, there is a fundamental bug in your architecture or training loop.
+</Callout>

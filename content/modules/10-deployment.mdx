@@ -1,0 +1,31 @@
+---
+number: "10"
+title: "Deployment"
+tag: "Module 10"
+subtitle: "Taking your models out of the lab and into the real world."
+---
+
+A model isn't useful until someone can use it. PyTorch provides several paths to production.
+
+## TorchScript and ONNX
+
+For high-performance environments (like C++ servers or edge devices), you can export PyTorch models.
+
+- **TorchScript**: A way to create serializable and optimizable models from PyTorch code.
+- **ONNX (Open Neural Network Exchange)**: An open standard format for representing machine learning models, allowing interoperability between frameworks.
+
+```python
+import torch
+
+# Exporting to TorchScript
+scripted_model = torch.jit.script(model)
+scripted_model.save("model_scripted.pt")
+
+# Exporting to ONNX
+dummy_input = torch.randn(1, 3, 224, 224)
+torch.onnx.export(model, dummy_input, "model.onnx")
+```
+
+<Callout type="warn">
+Exporting to ONNX requires a dummy input to trace the computation graph. Ensure the dummy input has the exact shape your production environment expects!
+</Callout>

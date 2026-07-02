@@ -1,0 +1,38 @@
+---
+number: "03"
+title: "PyTorch Workflow"
+tag: "Module 03"
+subtitle: "The standard loop: Data, Model, Loss, Optimizer, Train, Evaluate."
+---
+
+Every PyTorch project follows a similar blueprint. Mastering this workflow is the key to building any deep learning model.
+
+## The 6-Step Workflow
+
+1. **Get data ready**: Load, transform, and batch your data (`Dataset` and `DataLoader`).
+2. **Build or pick a model**: Define the neural network architecture (`nn.Module`).
+3. **Pick a loss function & optimizer**: How wrong is the model, and how do we update it?
+4. **Build a training loop**: Forward pass, calculate loss, backward pass, optimizer step.
+5. **Evaluate the model**: Test the model on unseen data.
+6. **Save and load the model**: Persist the trained weights for future use.
+
+```python
+# A typical training loop step
+model.train() # Set model to training mode
+
+for batch, (X, y) in enumerate(dataloader):
+    # 1. Forward pass
+    pred = model(X)
+    
+    # 2. Calculate loss
+    loss = loss_fn(pred, y)
+    
+    # 3. Optimizer zero grad
+    optimizer.zero_grad()
+    
+    # 4. Backward pass
+    loss.backward()
+    
+    # 5. Optimizer step
+    optimizer.step()
+```

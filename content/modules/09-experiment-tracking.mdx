@@ -1,0 +1,31 @@
+---
+number: "09"
+title: "Experiment Tracking"
+tag: "Module 09"
+subtitle: "Logging metrics with TensorBoard and Weights & Biases."
+---
+
+"If you're not tracking your experiments, you're not doing science." 
+
+## TensorBoard
+
+PyTorch integrates natively with TensorBoard via `torch.utils.tensorboard`.
+
+```python
+from torch.utils.tensorboard import SummaryWriter
+
+# Initialize writer
+writer = SummaryWriter('runs/experiment_1')
+
+# In your training loop:
+for epoch in range(epochs):
+    # ... train step ...
+    writer.add_scalar('Loss/train', loss, epoch)
+    writer.add_scalar('Accuracy/train', acc, epoch)
+
+writer.close()
+```
+
+<Callout type="tip">
+Consider using Weights & Biases (W&B) or MLflow for more robust cloud-based experiment tracking, especially when working in a team.
+</Callout>

@@ -1,0 +1,36 @@
+---
+number: "04"
+title: "Classification"
+tag: "Module 04"
+subtitle: "Binary and multi-class classification problems."
+---
+
+Classification is about predicting discrete categories. PyTorch provides specialized loss functions and layers for these tasks.
+
+## Binary vs Multi-class
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Output Layer Activation</th>
+      <th>Loss Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Binary</td>
+      <td>Sigmoid</td>
+      <td><code>nn.BCEWithLogitsLoss()</code></td>
+    </tr>
+    <tr>
+      <td>Multi-class</td>
+      <td>Softmax (implicit)</td>
+      <td><code>nn.CrossEntropyLoss()</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<Callout type="warn">
+PyTorch's `nn.CrossEntropyLoss` and `nn.BCEWithLogitsLoss` expect raw logits as inputs, NOT probabilities. Do not apply a softmax or sigmoid layer before these loss functions!
+</Callout>

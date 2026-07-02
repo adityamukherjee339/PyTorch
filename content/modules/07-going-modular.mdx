@@ -1,0 +1,22 @@
+---
+number: "07"
+title: "Going Modular"
+tag: "Module 07"
+subtitle: "Organizing Jupyter notebooks into production-ready scripts."
+---
+
+Notebooks are great for exploration, but production code needs structure. It's time to go modular.
+
+## The Standard PyTorch Project Structure
+
+A well-organized PyTorch project typically separates concerns into different Python scripts:
+
+- `data_setup.py`: Data loading and transforms.
+- `engine.py`: Training and evaluation loops.
+- `model_builder.py`: Neural network architectures.
+- `utils.py`: Helper functions (saving models, plotting).
+- `train.py`: The entry point that ties everything together.
+
+<Callout type="tip">
+Using `argparse` in your `train.py` allows you to change hyperparameters from the command line without editing code.
+</Callout>

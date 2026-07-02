@@ -1,0 +1,43 @@
+---
+number: "06"
+title: "Custom Datasets"
+tag: "Module 06"
+subtitle: "Subclassing torch.utils.data.Dataset for your own data."
+---
+
+Real-world problems rarely fit perfectly into pre-built dataset classes. You need to know how to load your own data.
+
+## The Dataset API
+
+To create a custom dataset, you subclass `torch.utils.data.Dataset` and implement three methods:
+1. `__init__`: Setup (load file paths, initialize transforms).
+2. `__len__`: Return the total number of samples.
+3. `__getitem__`: Load and return a single sample (and its label) given an index.
+
+```python
+from torch.utils.data import Dataset
+from PIL import Image
+
+class CustomImageDataset(Dataset):
+    def __init__(self, image_paths, labels, transform=None):
+        self.image_paths = image_paths
+        self.labels = labels
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.image_paths)
+
+    def __getitem__(self, idx):
+        img_path = self.image_paths[idx]
+        image = Image.open(img_path).convert("RGB")
+        label = self.labels[idx]
+        
+        if self.transform:
+            image = self.transform(image)
+            
+        return image, label
+```
+
+<Callout type="tip">
+Use `torch.utils.data.DataLoader` to wrap your dataset. It handles batching, shuffling, and multiprocessing (`num_workers`) for you!
+</Callout>

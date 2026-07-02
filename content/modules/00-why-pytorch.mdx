@@ -1,0 +1,35 @@
+---
+number: "00"
+title: "Why PyTorch?"
+tag: "Module 00"
+subtitle: "The philosophy and ecosystem of the dominant deep learning framework."
+---
+
+PyTorch has become the de facto standard for deep learning research and a powerhouse in production environments. But what makes it so special?
+
+## The Pythonic Design
+
+PyTorch feels like writing standard Python. Unlike older frameworks that required building static computation graphs before execution, PyTorch uses **dynamic computation graphs** (define-by-run). This means the graph is built on the fly as operations are executed, making it incredibly intuitive to debug using standard Python debuggers (`pdb`) or `print` statements.
+
+<Callout type="tip">
+If you know NumPy, you already know 80% of PyTorch's tensor API. PyTorch `Tensor` objects are essentially NumPy `ndarray`s with GPU acceleration and automatic differentiation.
+</Callout>
+
+## The Ecosystem
+
+PyTorch is more than just the core library:
+- **TorchVision**: Datasets, models, and transforms for computer vision.
+- **TorchText**: NLP utilities.
+- **TorchAudio**: Audio processing tools.
+- **PyTorch Lightning**: A lightweight wrapper to organize PyTorch code and scale seamlessly.
+
+```python
+import torch
+
+# Create a tensor and check if GPU is available
+x = torch.rand(5, 3)
+device = "cuda" if torch.cuda.is_available() else "cpu"
+x = x.to(device)
+
+print(f"Tensor on {device}:", x.shape)
+```

@@ -1,0 +1,31 @@
+---
+number: "05"
+title: "Computer Vision"
+tag: "Module 05"
+subtitle: "Convolutions, TorchVision, and processing images."
+---
+
+Computer vision in PyTorch relies heavily on Convolutional Neural Networks (CNNs) and the `torchvision` library.
+
+## TorchVision Basics
+
+The `torchvision` ecosystem provides:
+- `torchvision.datasets`: Built-in datasets like MNIST, CIFAR-10, ImageNet.
+- `torchvision.models`: Pre-trained architectures like ResNet, VGG, EfficientNet.
+- `torchvision.transforms`: Operations to augment and normalize images.
+
+```python
+import torchvision.transforms as transforms
+
+# A typical image transform pipeline
+transform = transforms.Compose([
+    transforms.Resize((224, 224)),
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.485, 0.456, 0.406], 
+                         std=[0.229, 0.224, 0.225])
+])
+```
+
+## Convolutional Layers
+
+`nn.Conv2d` is the workhorse of vision models. It slides a filter (kernel) over the image to extract features like edges, textures, and shapes.

@@ -1,0 +1,49 @@
+---
+number: "13"
+title: "Cheatsheet"
+tag: "Module 13"
+subtitle: "Quick reference for the most common PyTorch operations."
+---
+
+A handy reference guide for everyday PyTorch operations.
+
+## Common Operations
+
+<table>
+  <thead>
+    <tr>
+      <th>Operation</th>
+      <th>Code Snippet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Create tensor of zeros</td>
+      <td><code>torch.zeros(size)</code></td>
+    </tr>
+    <tr>
+      <td>Create tensor of random uniform</td>
+      <td><code>torch.rand(size)</code></td>
+    </tr>
+    <tr>
+      <td>Get item from 1-element tensor</td>
+      <td><code>x.item()</code></td>
+    </tr>
+    <tr>
+      <td>Move tensor to GPU</td>
+      <td><code>x.to('cuda')</code></td>
+    </tr>
+    <tr>
+      <td>Concatenate tensors</td>
+      <td><code>torch.cat((x, y), dim=0)</code></td>
+    </tr>
+    <tr>
+      <td>Matrix multiplication</td>
+      <td><code>torch.matmul(A, B)</code> or <code>A @ B</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<Callout type="tip">
+Always keep the official PyTorch documentation open. It's comprehensive and includes excellent tutorials.
+</Callout>

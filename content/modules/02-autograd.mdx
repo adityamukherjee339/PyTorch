@@ -1,0 +1,33 @@
+---
+number: "02"
+title: "Autograd"
+tag: "Module 02"
+subtitle: "Automatic differentiation engine powering neural network training."
+---
+
+PyTorch's `autograd` is the engine that powers neural network training. It records operations on tensors to form a backward graph, calculating gradients automatically.
+
+## How it works
+
+When you create a tensor with `requires_grad=True`, PyTorch tracks every operation applied to it.
+
+```python
+import torch
+
+# Create a tensor with requires_grad=True
+x = torch.tensor([2.0], requires_grad=True)
+
+# Perform some operations
+y = x ** 2 + 5 * x
+
+# Compute gradients
+y.backward()
+
+# Print the gradient (dy/dx at x=2)
+# dy/dx = 2x + 5 = 2(2) + 5 = 9
+print(x.grad) # tensor([9.])
+```
+
+<Callout type="tip">
+Use `with torch.inference_mode():` (or `torch.no_grad()`) when evaluating your model to disable gradient tracking. This saves memory and speeds up computations.
+</Callout>
